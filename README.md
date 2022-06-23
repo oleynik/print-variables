@@ -1,5 +1,11 @@
 # Print Variables
 
+---
+
+![Build Status](https://github.com/oleynik/print-variables/actions/workflows/gradle.yml/badge.svg)
+
+---
+
 ## Overview
 This project read all Environment Variables and System Properties and print them to the System Output.
 The main purpose of this project is to test passing Variables and Proprties.
