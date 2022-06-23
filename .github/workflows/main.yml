@@ -1,5 +1,9 @@
 name: Main Flow
 
+env:
+  APPLICATION_NAME: "Print Variables"
+  DOCKER_TAG: ${{ github.REPOSITORY }}:${{ github.GITHUB_SHA }}
+
 on:
   push:
     branches: [ "master" ]
@@ -30,11 +34,11 @@ jobs:
 
     - name: Print Variables
       run: |
-        echo "GitHub Repository: ${{github.GITHUB_REPOSITORY}}"
-        echo "GitHub Repository Name: ${{github.GITHUB_REPOSITORY_NAME}}"
-        echo "GitHub Repository Owner: ${{github.GITHUB_REPOSITORY_OWNER}}"
-        echo "GitHub Git SHA:  ${{github.GITHUB_SHA}}"
+        echo "GitHub Repository       : ${{ github.GITHUB_REPOSITORY }}"
+        echo "GitHub Repository Name  : ${{ github.GITHUB_REPOSITORY_NAME }}"
+        echo "GitHub Repository Owner : ${{ github.GITHUB_REPOSITORY_OWNER }}"
+        echo "GitHub Git SHA 1        : ${{ github.SHA }}"
+        echo "GitHub Git SHA 2        : ${{ github.GITHUB_SHA }}"
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag print-variables:$(date +%s)
-#      run: docker build . --file Dockerfile --tag ${{github.}}:${{github.GITHUB_SHA}}
