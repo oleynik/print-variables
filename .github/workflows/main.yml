@@ -34,11 +34,10 @@ jobs:
 
     - name: Print Variables
       run: |
-        echo "GitHub Repository       : ${{ github.GITHUB_REPOSITORY }}"
-        echo "GitHub Repository Name  : ${{ github.GITHUB_REPOSITORY_NAME }}"
-        echo "GitHub Repository Owner : ${{ github.GITHUB_REPOSITORY_OWNER }}"
-        echo "GitHub Git SHA 1        : ${{ github.SHA }}"
-        echo "GitHub Git SHA 2        : ${{ github.GITHUB_SHA }}"
+        echo "GitHub Repository       : ${{ github.REPOSITORY }}"
+        echo "GitHub Repository Name  : ${{ github.REPOSITORY_NAME }}"
+        echo "GitHub Repository Owner : ${{ github.REPOSITORY_OWNER }}"
+        echo "GitHub Git SHA          : ${{ github.SHA }}"
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag print-variables:$(date +%s)
