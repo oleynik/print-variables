@@ -2,7 +2,7 @@ name: Main Flow
 
 env:
   APPLICATION_NAME: "Print Variables"
-  DOCKER_TAG: ${{ github.REPOSITORY }}:${{ github.GITHUB_SHA }}
+  DOCKER_TAG: ${{ github.REPOSITORY }}:${{ github.SHA }}
 
 on:
   push:
@@ -40,4 +40,5 @@ jobs:
         echo "GitHub Git SHA          : ${{ github.SHA }}"
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag print-variables:$(date +%s)
+#      run: docker build . --file Dockerfile --tag print-variables:$(date +%s)
+      run: docker build . --file Dockerfile --tag print-variables:${{ github.SHA }}
