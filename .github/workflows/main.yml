@@ -38,8 +38,6 @@ jobs:
         echo "GitHub Repository Name  : ${{ github.REPOSITORY_NAME }}"
         echo "GitHub Repository Owner : ${{ github.REPOSITORY_OWNER }}"
         echo "GitHub Git SHA          : ${{ github.SHA }}"
-        echo "Secrets REPO            : ${{ secrets.REPO }}"
 
     - name: Build the Docker image
-#      run: docker build . --file Dockerfile --tag print-variables:$(date +%s)
       run: docker build . --file Dockerfile --tag print-variables:${{ github.SHA }}
