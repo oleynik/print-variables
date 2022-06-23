@@ -27,6 +27,14 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: clean build
-        
+
+    - name: Print Variables
+      run: |
+        echo "GitHub Repository: ${{github.GITHUB_REPOSITORY}}"
+        echo "GitHub Repository Name: ${{github.GITHUB_REPOSITORY_NAME}}"
+        echo "GitHub Repository Owner: ${{github.GITHUB_REPOSITORY_OWNER}}"
+        echo "GitHub Git SHA:  ${{github.GITHUB_SHA}}"
+
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag print-variables:$(date +%s)
+#      run: docker build . --file Dockerfile --tag ${{github.}}:${{github.GITHUB_SHA}}
