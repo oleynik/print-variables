@@ -2,7 +2,7 @@
 
 ---
 
-![Build Status](https://github.com/oleynik/print-variables/actions/workflows/gradle.yml/badge.svg)
+![Build Status](https://github.com/oleynik/print-variables/actions/workflows/main.yml/badge.svg)
 
 ---
 
