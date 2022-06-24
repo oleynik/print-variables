@@ -40,7 +40,7 @@ jobs:
           echo "GitHub Repository Name 2  : ${{ github.event.repository.name }}"
           echo "GitHub Repository Owner   : ${{ github.REPOSITORY_OWNER }}"
           echo "GitHub Git SHA            : ${{ github.SHA }}"
-          echo "GitHub DOCKER TAG         : $DOCKER_TAG"
+          echo "GitHub DOCKER TAG         : $env.DOCKER_TAG"
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag "$DOCKER_TAG"
+        run: docker build . --file Dockerfile --tag $env.DOCKER_TAG
