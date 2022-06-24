@@ -18,26 +18,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Clone Repository
-      uses: actions/checkout@v3
-    
-    - name: Set up JDK 18
-      uses: actions/setup-java@v3
-      with:
-        java-version: '18'
-        distribution: 'temurin'
-        
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-      with:
-        arguments: clean build
+      - name: Preparation
+        run:  echo ::set-env name=REPO_NAME::$(echo $GITHUB_REF | awk -F / '{print $3}')
+      - name: Clone Repository
+        uses: actions/checkout@v3
 
-    - name: Print Variables
-      run: |
-        echo "GitHub Repository       : ${{ github.REPOSITORY }}"
-        echo "GitHub Repository Name  : ${{ github.REPOSITORY_NAME }}"
-        echo "GitHub Repository Owner : ${{ github.REPOSITORY_OWNER }}"
-        echo "GitHub Git SHA          : ${{ github.SHA }}"
+      - name: Set up JDK 18
+        uses: actions/setup-java@v3
+        with:
+          java-version: '18'
+          distribution: 'temurin'
 
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag print-variables:${{ github.SHA }}
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
+        with:
+          arguments: clean build
+
+      - name: Print Variables
+        run: |
+          echo "GitHub Repository       : ${{ github.REPOSITORY }}"
+          echo "GitHub Repository Name 1  : ${{ github.REPOSITORY_NAME }}"
+          echo "GitHub Repository Name 2  : $REPO_NAME"
+          echo "GitHub Repository Owner : ${{ github.REPOSITORY_OWNER }}"
+          echo "GitHub Git SHA          : ${{ github.SHA }}"
+
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag print-variables:${{ github.SHA }}
