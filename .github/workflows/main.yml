@@ -3,7 +3,7 @@ name: Main Flow
 env:
   APPLICATION_NAME: "Print Variables"
   DOCKERHUB_ACCOUNT: alexanderoleynik
-  DOCKER_TAG: $DOCKERHUB_ACCOUNT/${{ github.event.repository.name }}:${{ github.SHA }}
+  DOCKER_TAG: "$DOCKERHUB_ACCOUNT/${{ github.event.repository.name }}:${{ github.SHA }}"
 
 on:
   push:
@@ -43,4 +43,4 @@ jobs:
           echo "GitHub DOCKER TAG         : $DOCKER_TAG"
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag $DOCKER_TAG
+        run: docker build . --file Dockerfile --tag "$DOCKER_TAG"
