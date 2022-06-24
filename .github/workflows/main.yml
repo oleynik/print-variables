@@ -2,7 +2,8 @@ name: Main Flow
 
 env:
   APPLICATION_NAME: "Print Variables"
-  DOCKER_TAG: ${{ github.REPOSITORY }}:${{ github.SHA }}
+  DOCKERHUB_ACCOUNT: alexanderoleynik
+  DOCKER_TAG: $DOCKERHUB_ACCOUNT/${{ github.event.repository.name }}:${{ github.SHA }}
 
 on:
   push:
@@ -34,11 +35,12 @@ jobs:
 
       - name: Print Variables
         run: |
-          echo "GitHub Repository       : ${{ github.REPOSITORY }}"
+          echo "GitHub Repository         : ${{ github.REPOSITORY }}"
           echo "GitHub Repository Name 1  : ${{ github.REPOSITORY_NAME }}"
           echo "GitHub Repository Name 2  : ${{ github.event.repository.name }}"
-          echo "GitHub Repository Owner : ${{ github.REPOSITORY_OWNER }}"
-          echo "GitHub Git SHA          : ${{ github.SHA }}"
+          echo "GitHub Repository Owner   : ${{ github.REPOSITORY_OWNER }}"
+          echo "GitHub Git SHA            : ${{ github.SHA }}"
+          echo "GitHub DOCKER TAG         : $DOCKER_TAG"
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag print-variables:${{ github.SHA }}
+        run: docker build . --file Dockerfile --tag $DOCKER_TAG
