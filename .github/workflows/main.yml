@@ -23,7 +23,7 @@ jobs:
           echo "GitHub Repository Owner   : ${{ github.REPOSITORY_OWNER }}"
           echo "GitHub Repository Name    : ${{ github.event.repository.name }}"
           echo "GitHub Git SHA            : ${{ github.SHA }}"
-          echo "GitHub DOCKER TAG Current : ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.SHA }}"
+          echo "GitHub DOCKER TAG Current : ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${GITHUB_SHA::7}"
           echo "GitHub DOCKER TAG Latest  : ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}"
 
       - name: Clone Repository
@@ -57,7 +57,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}, ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.SHA }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}, ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${GITHUB_SHA::7}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Short Git SHA
