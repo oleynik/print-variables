@@ -4,7 +4,7 @@ env:
   APPLICATION_NAME: "Print Variables"
   DOCKERHUB_ACCOUNT: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKER_TAG_LATEST: "$DOCKERHUB_ACCOUNT/${{ github.event.repository.name }}"
-  DOCKER_TAG_CURRENT: "$DOCKER_TAG_BASIS:${{ github.SHA }}"
+  DOCKER_TAG_CURRENT: "DOCKER_TAG_LATEST:${{ github.SHA }}"
 
 on:
   push:
