@@ -2,9 +2,6 @@ name: Main Flow
 
 env:
   APPLICATION_NAME: "Print Variables"
-  DOCKERHUB_ACCOUNT: "${{ secrets.DOCKERHUB_USERNAME }}"
-  DOCKER_TAG_LATEST: "$DOCKERHUB_ACCOUNT/${{ github.event.repository.name }}"
-  DOCKER_TAG_CURRENT: "$DOCKERHUB_ACCOUNT/${{ github.event.repository.name }}:${{ github.SHA }}"
 
 on:
   push:
@@ -26,8 +23,8 @@ jobs:
           echo "GitHub Repository Owner   : ${{ github.REPOSITORY_OWNER }}"
           echo "GitHub Repository Name    : ${{ github.event.repository.name }}"
           echo "GitHub Git SHA            : ${{ github.SHA }}"
-          echo "GitHub DOCKER TAG Current : ${{ env.DOCKER_TAG_CURRENT }}"
-          echo "GitHub DOCKER TAG Latest  : ${{ env.DOCKER_TAG_LATEST }}"
+          echo "GitHub DOCKER TAG Current : ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.SHA }}"
+          echo "GitHub DOCKER TAG Latest  : ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}"
 
       - name: Clone Repository
         uses: actions/checkout@v3
@@ -55,16 +52,10 @@ jobs:
         with:
           images: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
 
-      - name: Print DockerHub Metadata
-        run: |
-          echo "Tags: ${{ steps.meta.outputs.tags }}"
-          echo "Labels: ${{ steps.meta.outputs.labels }}"
-          echo "Metadata output: ${{ steps.meta.outputs }}"
-
       - name: Build and Push Docker Image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
           push: true
-          tags: ${{ env.DOCKER_TAG_CURRENT }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}, ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.SHA }}
           labels: ${{ steps.meta.outputs.labels }}
