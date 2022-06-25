@@ -59,3 +59,8 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}, ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.SHA }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Short Git SHA
+        run: |
+          echo Short git commit SHA:
+          echo ${GITHUB_SHA::7}
