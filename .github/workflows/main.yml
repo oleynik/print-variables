@@ -46,7 +46,6 @@ jobs:
       - name: Build the Docker Image
         run: |
           docker build . --file Dockerfile --tag ${{ env.DOCKER_TAG_CURRENT }}
-          docker tag ${{ env.DOCKER_TAG_CURRENT }} ${{ env.DOCKER_TAG_LATEST }}
 
       - name: Login to DockerHub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -68,4 +67,3 @@ jobs:
       - name: Publish Docker Image
         run: |
           docker push ${{ env.DOCKER_TAG_CURRENT }}
-          docker push ${{ env.DOCKER_TAG_LATEST }}
