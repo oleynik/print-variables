@@ -2,9 +2,9 @@ name: Main Flow
 
 env:
   APPLICATION_NAME: "Print Variables"
-  DOCKERHUB_ACCOUNT: ${{ secrets.DOCKERHUB_USERNAME }}
-  DOCKER_TAG_LATEST: "${{ env.DOCKERHUB_ACCOUNT }}/${{ github.event.repository.name }}"
-  DOCKER_TAG_CURRENT: "${{ env.DOCKER_TAG_LATEST }}:${{ github.SHA }}"
+  DOCKERHUB_ACCOUNT: "${{ secrets.DOCKERHUB_USERNAME }}"
+  DOCKER_TAG_LATEST: "$DOCKERHUB_ACCOUNT/${{ github.event.repository.name }}"
+  DOCKER_TAG_CURRENT: "$DOCKER_TAG_LATEST:${{ github.SHA }}"
 
 on:
   push:
