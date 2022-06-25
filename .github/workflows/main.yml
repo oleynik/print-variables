@@ -64,3 +64,16 @@ jobs:
         run: |
           echo Short git commit SHA:
           echo ${GITHUB_SHA::7}
+
+      - uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+        with:
+          length: 7
+
+      - run: echo $SHA
+        env:
+          SHA: ${{ steps.short-sha.outputs.sha }}
+
+      - run: echo $SHA
+        env:
+          SHA: ${{ env.SHA }}
