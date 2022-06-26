@@ -23,10 +23,6 @@ jobs:
         with:
           length: 7
 
-#      - run: echo $SHA
-#        env:
-#          SHA: ${{ steps.short-sha.outputs.sha }}
-
       - name: Print Variables
         run: |
           echo "GitHub Repository         : ${{ github.REPOSITORY }}"
