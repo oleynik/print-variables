@@ -17,12 +17,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Extract Short SHA of Git Commit
+        uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+        with:
+          length: 7
+
+#      - run: echo $SHA
+#        env:
+#          SHA: ${{ steps.short-sha.outputs.sha }}
+
       - name: Print Variables
         run: |
           echo "GitHub Repository         : ${{ github.REPOSITORY }}"
           echo "GitHub Repository Owner   : ${{ github.REPOSITORY_OWNER }}"
           echo "GitHub Repository Name    : ${{ github.event.repository.name }}"
           echo "GitHub Git SHA            : ${{ github.SHA }}"
+          echo "GitHub Env SHA            : ${{ env.SHA }}"
+          echo "Short-SHA Output          : ${{ steps.short-sha.outputs.sha }}"
           echo "GitHub DOCKER TAG Current : ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${GITHUB_SHA::7}"
           echo "GitHub DOCKER TAG Latest  : ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}"
 
@@ -65,15 +77,6 @@ jobs:
           echo Short git commit SHA:
           echo ${GITHUB_SHA::7}
 
-      - uses: benjlevesque/short-sha@v1.2
-        id: short-sha
-        with:
-          length: 7
-
-      - run: echo $SHA
-        env:
-          SHA: ${{ steps.short-sha.outputs.sha }}
-
-      - run: echo $SHA
-        env:
-          SHA: ${{ env.SHA }}
+#      - run: echo $SHA
+#        env:
+#          SHA: ${{ env.SHA }}
