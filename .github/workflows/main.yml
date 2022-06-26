@@ -17,13 +17,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Extract Short SHA of Git Commit
+        uses: benjlevesque/short-sha@v1.2
+        id: short-sha
+        with:
+          length: 7
+
       - name: Print Variables
         run: |
           echo "GitHub Repository         : ${{ github.REPOSITORY }}"
           echo "GitHub Repository Owner   : ${{ github.REPOSITORY_OWNER }}"
           echo "GitHub Repository Name    : ${{ github.event.repository.name }}"
           echo "GitHub Git SHA            : ${{ github.SHA }}"
-          echo "GitHub DOCKER TAG Current : ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.SHA }}"
+          echo "GitHub Env SHA            : ${{ env.SHA }}"
+          echo "Short-SHA Output          : ${{ steps.short-sha.outputs.sha }}"
+          echo "GitHub DOCKER TAG Current : ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${GITHUB_SHA::7}"
           echo "GitHub DOCKER TAG Latest  : ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}"
 
       - name: Clone Repository
@@ -57,5 +65,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}, ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.SHA }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}, ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ env.SHA }}
           labels: ${{ steps.meta.outputs.labels }}
