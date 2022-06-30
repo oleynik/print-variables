@@ -32,6 +32,6 @@ jar {
 
 release {
 	git {
-		requireBranch = 'master'
+		requireBranch = 'ReleaseProcess'
 	}
 }
