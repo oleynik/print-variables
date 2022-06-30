@@ -29,3 +29,9 @@ jar {
 		attributes 'Main-Class': 'ua.infinity.experiments.environment.printvariables.PrintVariablesApplication'
 	}
 }
+
+release {
+	git {
+		requireBranch = 'master'
+	}
+}
