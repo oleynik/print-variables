@@ -28,6 +28,7 @@ jar {
 
 release {
 	tagTemplate = 'v${version}'
+	pushReleaseVersionBranch = true
 	git {
 		requireBranch = 'ReleaseProcess'
 	}
