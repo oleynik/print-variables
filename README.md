@@ -29,3 +29,11 @@ gradle release \
       -Prelease.git.requiredBranch=v0.0.12 \
       -Prelease.pushToBranchPrefix='release/'
 ```
+
+Simple way:
+```bash
+gradle release \
+      -Prelease.useAutomaticVersion=true \
+      -Prelease.releaseVersion=0.0.13 \
+      -Prelease.newVersion=0.0.14-SNAPSHOT
+```

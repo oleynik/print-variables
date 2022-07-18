@@ -26,6 +26,18 @@ jar {
 	}
 }
 
+def createReleaseBranch(String releaseBranchName) {
+	printf('Creating release branch %s', releaseBranchName)
+	['sh', '-c', 'git branch ', releaseBranchName].execute().text.trim()
+	['sh', '-c', 'git checkout ', releaseBranchName].execute().text.trim()
+}
+
+//tasks.register('createReleaseBranch') {
+//	doLast {
+//		createReleaseBranch('release/v' + extension.releaseVersion.get())
+//	}
+//}
+
 release {
 	tagTemplate = 'v${version}'
 	preTagCommitMessage = '[Gradle Release Plugin] Prepare for release:'
@@ -34,3 +46,5 @@ release {
 	failOnCommitNeeded = false
 	failOnPublishNeeded = false
 }
+
+beforeReleaseBuild.dependsOn createReleaseBranch(version.toString())
