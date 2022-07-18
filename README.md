@@ -26,8 +26,7 @@ gradle release \
       -Prelease.useAutomaticVersion=true \
       -Prelease.releaseVersion=0.0.15 \
       -Prelease.newVersion=0.0.16-SNAPSHOT \
-      -Prelease.git.requiredBranch=v0.0.15
-      -Prelease.git.pushToBranchPrefix='release/v'
+      -Prelease.git.pushToBranchPrefix='release/v0.0.15'
 ```
 
 Simple way:
