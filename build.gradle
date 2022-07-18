@@ -35,6 +35,5 @@ release {
 	failOnPublishNeeded = false
 	git {
 		requireBranch = 'master'
-		pushToRemote = 'origin/release/v0.0.9'
 	}
 }
