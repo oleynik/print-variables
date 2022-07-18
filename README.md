@@ -24,6 +24,6 @@ This project is suitable for building Docker Image out of the box. To do that ne
 ```bash
 gradle release \
       -Prelease.useAutomaticVersion=true \
-      -Prelease.releaseVersion=0.0.4 \
-      -Prelease.newVersion=0.0.5-SNAPSHOT
+      -Prelease.releaseVersion=0.0.5 \
+      -Prelease.newVersion=0.0.6-SNAPSHOT
 ```

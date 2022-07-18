@@ -28,9 +28,9 @@ jar {
 
 release {
 	tagTemplate = 'v${version}'
-	preTagCommitMessage = 'Prepare for release ${version}'
-	tagCommitMessage = 'Release ${version}'
-	newVersionCommitMessage = 'New SNAPSHOT version'
+	preTagCommitMessage = '[Gradle Release Plugin] Prepare for release:'
+	tagCommitMessage = '[Gradle Release Plugin] Release:'
+	newVersionCommitMessage = '[Gradle Release Plugin] New SNAPSHOT version:'
 	failOnCommitNeeded = false
 	failOnPublishNeeded = false
 	git {
