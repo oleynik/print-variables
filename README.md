@@ -27,3 +27,4 @@ gradle release \
       -Prelease.releaseVersion=0.0.16 \
       -Prelease.newVersion=0.0.17-SNAPSHOT
 ```
+The command above create release in the `master` branch and mark it with the corresponding tag.
