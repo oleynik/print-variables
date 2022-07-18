@@ -24,15 +24,6 @@ This project is suitable for building Docker Image out of the box. To do that ne
 ```bash
 gradle release \
       -Prelease.useAutomaticVersion=true \
-      -Prelease.releaseVersion=0.0.15 \
-      -Prelease.newVersion=0.0.16-SNAPSHOT \
-      -Prelease.git.pushToBranchPrefix='release/v0.0.15'
-```
-
-Simple way:
-```bash
-gradle release \
-      -Prelease.useAutomaticVersion=true \
-      -Prelease.releaseVersion=0.0.13 \
-      -Prelease.newVersion=0.0.14-SNAPSHOT
+      -Prelease.releaseVersion=0.0.16 \
+      -Prelease.newVersion=0.0.17-SNAPSHOT
 ```
