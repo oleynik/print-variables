@@ -19,3 +19,11 @@ This project uses [Spring Boot](https://spring.io/projects/spring-boot) which me
 
 ### How to create Docker Image?
 This project is suitable for building Docker Image out of the box. To do that need to run `docker build .` command from the root folder of the project.
+
+### How to make a new Release?
+```bash
+gradle release \
+      -Prelease.useAutomaticVersion=true \
+      -Prelease.releaseVersion=0.0.3 \
+      -Prelease.newVersion=0.0.4-SNAPSHOT
+```
