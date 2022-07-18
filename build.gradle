@@ -35,5 +35,6 @@ release {
 	failOnPublishNeeded = false
 	git {
 		requireBranch = 'master'
+		pushToBranchPrefix = 'release/v0.0.11'
 	}
 }
