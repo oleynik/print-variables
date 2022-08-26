@@ -33,7 +33,7 @@ The command above create release in the `master` branch and mark it with the cor
 ```bash
 gradle -Dorg.gradle.debug=true --no-daemon release \
       -Prelease.useAutomaticVersion=true \
-      -Prelease.releaseVersion=0.1.3 \
-      -Prelease.newVersion=0.1.4-SNAPSHOT \
-      -Prelease.pushReleaseVersionBranch='release/v0.1.3'
+      -Prelease.releaseVersion=0.1.4 \
+      -Prelease.newVersion=0.1.5-SNAPSHOT \
+      -Prelease.pushReleaseVersionBranch='release/v0.1.4'
 ```
