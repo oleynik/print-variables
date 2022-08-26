@@ -8,7 +8,7 @@
 
 ## Overview
 This project read all Environment Variables and System Properties and print them to the System Output.
-The main purpose of this project is to test passing Variables and Proprties.
+The main purpose of this project is to test passing Variables and Properties.
 
 ## FAQ
 ### How to build the Project?
@@ -29,3 +29,11 @@ gradle release \
       -Prelease.pushReleaseVersionBranch='release/v0.1.2'
 ```
 The command above create release in the `master` branch and mark it with the corresponding tag.
+
+```bash
+gradle -Dorg.gradle.debug=true --no-daemon release \
+      -Prelease.useAutomaticVersion=true \
+      -Prelease.releaseVersion=0.1.3 \
+      -Prelease.newVersion=0.1.4-SNAPSHOT \
+      -Prelease.pushReleaseVersionBranch='release/v0.1.3'
+```
