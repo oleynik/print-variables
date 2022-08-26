@@ -33,7 +33,4 @@ release {
 	newVersionCommitMessage = '[Gradle Release Plugin] New SNAPSHOT version:'
 	failOnCommitNeeded = false
 	failOnPublishNeeded = false
-	git {
-		requireBranch = '(master|release.*)'
-	}
 }
